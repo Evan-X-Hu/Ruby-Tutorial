@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,5 +12,21 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "products#index"
+
+  resources :products do # does all the stuff below
+    resources :subscribers, only: [ :create ]
+  end
+  # get "/products", to: "products#index" # what is after the #? #index goes to /views/products/index.html.erb
+  
+  # get "/products/new", to: "products#new" # show?
+  # post "/products", to: "products#create" # create?
+
+  # get "/products/:id", to: "products#show"
+
+  # get "/products/:id/edit", to: "products#edit"
+  # patch "/products/:id", to: "products#update"
+  # put "/products/:id", to: "products#update"
+
+  # delete "/products/:id", to: "products#destroy"
 end

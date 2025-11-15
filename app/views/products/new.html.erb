@@ -1,0 +1,10 @@
+<h1>New Product</h1>
+
+<%= render "form", product: @product %>
+<%= link_to "Cancel", products_path %>
+
+<%# HOW DO I KNOW THAT THE SUBMIT WILL BE A POST METHOD TO /products ? 
+We generate the URL based on the model used, it is the Product model
+since we passed an instance of the Product SINCE controller has @product = Product.new
+thus it sends a POST to /products (THANK RUBY CREATOR, IT JUST KNOWS TO DO THIS)
+The defaul POST is the products#create %>

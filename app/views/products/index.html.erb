@@ -1,0 +1,20 @@
+<h1><%= t "Products#index" %></h1>
+<h1><%= t ".title" %></h1>
+<p>Find me in app/views/products/index.html.erb</p>
+<%#<p><%= debug @products %><%#</p>%>
+
+<div id="products">
+    <%= link_to "New Product", new_product_path if authenticated?%> <!-- The prefix is our named helper which has the path for this route -->
+    <% @products.each do |product| %>
+        <div>
+            <!-- <a href="/products/<%= product.id %>">
+                    <%= product.name %>
+                </a>
+            THE EQUIVALENT OF THIS STATEMENT IS BELOW -->
+            <%= link_to product.name, product_path(product.id) %>
+            <%= link_to "edit", edit_product_path(product.id) %>
+            <%# link_to <name of link> <path(url params)%>
+        </div>
+    <% end %>
+</div>
+

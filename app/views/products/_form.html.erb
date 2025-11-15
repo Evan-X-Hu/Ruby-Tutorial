@@ -1,0 +1,26 @@
+<%# this file starts with an _ to denote that it is a partial
+# I think it will act similar to layouts in React
+# we use product instead of @product because we need a local variable that
+# will take in the @product that is used in the view for the controller action
+# that extends this partial and also uses @product %>
+
+<%= form_with model: product do |form| %>
+    <% if form.object.errors.any? %>
+        <p class="error"><%= form.object.errors.full_messages.first %></p>
+    <% end %>
+
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+        <%= form.label :description, style: "display: block" %>
+        <%= form.rich_textarea :description %>
+        <%= form.label :inventory_count, style: "display: block" %>
+        <%= form.number_field :inventory_count %>
+        <%= form.label :featured_image, style: "display: block" %>
+        <%= form.file_field :featured_image, accept: "image/*" %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
